@@ -56,22 +56,22 @@ public function showForm()
 
     $user->save();
 
-    return view('login');
+    return redirect('/')->with('success', 'You have registered successfully.');
  }
 
 
- public function login(Request $request)
- {
-    // dd('hello mukta');
-     $credentials = $request->only('email', 'password');
+//  public function login(Request $request)
+//  {
+//     // dd('hello mukta');
+//      $credentials = $request->only('email', 'password');
  
-     if (Auth::attempt($credentials)) {
-         // Authentication successful
-         return redirect()->route('threads')->with('success', 'You have logged in successfully.');
-     } else {
-         // Authentication failed
-         return redirect()->back()->with('error', 'Invalid email or password. Please try again.')->withInput();
-     }
- }
+//      if (Auth::attempt($credentials)) {
+//          // Authentication successful
+//          return redirect()->route('threads')->with('success', 'You have logged in successfully.');
+//      } else {
+//          // Authentication failed
+//          return redirect()->back()->with('error', 'Invalid email or password. Please try again.')->withInput();
+//      }
+//  }
 
 }

@@ -77,7 +77,7 @@ class ThreadController extends Controller
 
     // Update the name
     $user->name = $request->input('name');
-    var_dump($request->file('avatar'));
+    // var_dump($request->file('avatar'));
     // Update the avatar if provided
     if ($request->hasFile('avatar')) {
         // dd('avatar');
@@ -108,5 +108,24 @@ class ThreadController extends Controller
     return redirect()->back()->with('success', 'Profile updated successfully.');
 }
     
+
+public function deleteThread(Thread $thread)
+{
+
+    $thread->comments()->delete();
+    $thread->delete();
+
+    return redirect()->back()->with('success', 'Thread have been deleted successfully.');
+}
+
+public function searchThread(Request $request)
+{
+    // dd($request->all());
+    $search = $request->input('search');
+    
+    $threads = Thread::where('title', 'like', '%'.$search.'%')->get();
+    
+    return view('threads', compact('threads'));
+}
 
 }

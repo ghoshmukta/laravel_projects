@@ -40,7 +40,7 @@ Route::get('/', function () {
 Route::get('/register', [RegisterController::class, 'showForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
 
-Route::post('/login', [RegisterController::class, 'login'])->name('login.submit');
+Route::post('/login', [Controller::class, 'login'])->name('login.submit');
 
 // Route::get('/threads', function () {
 //     return view('threads');
@@ -66,4 +66,10 @@ Route::get('/logout', [Controller::class, 'destroy'])->name('logout');
 Route::post('/comments/{comment}/markAsBestReply', [CommentController::class,'markAsBestReply'])->name('comments.markAsBestReply');
 Route::post('/profile', [ThreadController::class, 'update'])->name('profile.update');
 
+Route::get('/reset', [Controller::class, 'resetPassword'])->name('reset');
+Route::post('/reset', [Controller::class, 'updatePassword'])->name('update');
+
+Route::post('delete/{thread}', [ThreadController::class, 'deleteThread'])->name('delete');
+
+Route::get('/search', [ThreadController::class, 'searchThread'])->name('search');
 
